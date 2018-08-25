@@ -2,6 +2,7 @@
 
 Goal of the hacked version is to allow you to be able to run reform1 and reform2 side by side.
 This gives you the ability to be able to upgrade a single form at a time.
+This is essentially a rename of the `Reform` module to `Reform126`
 
 # Reform
 
