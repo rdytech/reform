@@ -7,7 +7,7 @@ class SyncOptionTest < MiniTest::Spec
 
   # access to :form!
   describe ":sync allows you conditionals" do
-    class BandForm < Reform::Form
+    class BandForm < Reform126::Form
       property :name, sync: lambda { |value, options| options.user_options[:form].changed?(:name) ? model.name = value : nil } # change if it hasn't changed
     end
 
@@ -32,7 +32,7 @@ end
 class SyncWithDynamicOptionsTest < MiniTest::Spec
   Song = Struct.new(:id, :title, :length)
 
-  class SongForm < Reform::Form
+  class SongForm < Reform126::Form
     property :id
     property :title, sync: true
     property :length
@@ -62,7 +62,7 @@ end
 #   let (:form) { HitForm.new(song) }
 #   let (:song) { Song.new("Injection", Object, Band.new("Rise Against")) }
 
-#   class HitForm < Reform::Form
+#   class HitForm < Reform126::Form
 #     include Sync::SkipUnchanged
 #     register_feature Sync::SkipUnchanged
 

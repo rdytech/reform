@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ContractTest < BaseTest
-  class AlbumContract < Reform::Contract
+  class AlbumContract < Reform126::Contract
     property :title
     validates :title, :presence => true, :length => {:minimum => 3}
 
@@ -95,7 +95,7 @@ class ContractTest < BaseTest
     # test :superclass?
   end
 
-  class SongContract < Reform::Contract
+  class SongContract < Reform126::Contract
     property :title, readable: true, type: String
   end
 

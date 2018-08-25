@@ -1,5 +1,5 @@
 require "test_helper"
-require "reform/form/coercion"
+require "reform_126/form/coercion"
 
 class CoercionTest < BaseTest
   class Irreversible < Virtus::Attribute
@@ -8,7 +8,7 @@ class CoercionTest < BaseTest
     end
   end
 
-  class Form < Reform::Form
+  class Form < Reform126::Form
     include Coercion
 
     property :released_at, :type => DateTime

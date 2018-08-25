@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class NestedFormTest < MiniTest::Spec
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     property :title
 
-    # class SongForm < Reform::Form
+    # class SongForm < Reform126::Form
     #   property :title
     #   validates :title, :presence => true
     # end
@@ -47,7 +47,7 @@ class NestedFormTest < MiniTest::Spec
 
 
   it "creates nested forms" do
-    form.hit.must_be_kind_of Reform::Form
+    form.hit.must_be_kind_of Reform126::Form
     form.songs.must_be_kind_of Array
   end
 
@@ -138,7 +138,7 @@ class NestedFormTest < MiniTest::Spec
 
   # describe "with aliased nested form name" do
   #   let (:form) do
-  #     Class.new(Reform::Form) do
+  #     Class.new(Reform126::Form) do
   #       form :hit, :class => AlbumForm::SongForm, :as => :song
   #     end.new(OpenStruct.new(:hit => OpenStruct.new(:title => "")))
   #   end
@@ -159,12 +159,12 @@ class NestedFormTest < MiniTest::Spec
     end
     let (:form) { AlbumForm.new(album) }
 
-    class SongForm < Reform::Form
+    class SongForm < Reform126::Form
       property :title
       validates_presence_of :title
     end
 
-    class AlbumForm < Reform::Form
+    class AlbumForm < Reform126::Form
       property :title
 
       property :hit, :form => SongForm #, :parse_strategy => :sync, :instance => true
@@ -190,7 +190,7 @@ class NestedFormTest < MiniTest::Spec
     describe "#validate" do
       it "keeps Form instances" do
         form.validate("songs"=>[{"title" => "Atwa"}])
-        form.songs.first.must_be_kind_of Reform::Form
+        form.songs.first.must_be_kind_of Reform126::Form
       end
     end
   end

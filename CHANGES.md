@@ -47,7 +47,7 @@
 * Due to countless bugs we no longer include support for simple_form's type interrogation automatically. This allows using forms with non-AM objects. If you want full support for simple_form do as follows.
 
     ```ruby
-    class SongForm < Reform::Form
+    class SongForm < Reform126::Form
       include ModelReflections
     ```
 
@@ -122,7 +122,7 @@
     ```
 
   This will prefix the error with `:base`.
-* Need your form to parse JSON? Include `Reform::Form::JSON`, the `#validate` method now expects a JSON string and will deserialize and populate the form from the JSON document.
+* Need your form to parse JSON? Include `Reform126::Form::JSON`, the `#validate` method now expects a JSON string and will deserialize and populate the form from the JSON document.
 * Added `Form::schema` to generate a pure representer from the form's representer.
 * Added `:readable` and `:writeable` option which allow to skip reading or writing to the model when `false`.
 
@@ -139,7 +139,7 @@
 * Deprecate first block argument in save. It's new signature is `save { |hash| }`. You already got the form instance when calling `form.save` so there's no need to pass it into the block.
 * `#validate` does **not** touch any model anymore. Both single values and collections are written to the model after `#sync` or `#save`.
 * Coercion now happens in `#validate`, only.
-* You can now define forms in modules including `Reform::Form::Module` to improve reusability.
+* You can now define forms in modules including `Reform126::Form::Module` to improve reusability.
 * Inheriting from forms and then overriding/extending properties with `:inherit` now works properly.
 * You can now define methods in inline forms.
 * Added `Form::ActiveModel::ModelValidations` to copy validations from model classes. Thanks to @cameron-martin for this fine addition.
@@ -197,7 +197,7 @@ The reason for this confusion is that you don't blog enough about Reform. Only a
 
 * Deprecated model readers for `Composition` and `ActiveModel`. Consider the following setup.
     ```ruby
-      class RecordingForm < Reform::Form
+      class RecordingForm < Reform126::Form
         include Composition
 
         property :title, on: :song
@@ -210,7 +210,7 @@ The reason for this confusion is that you don't blog enough about Reform. Only a
 
   Also deprecated is the alias accessor as found with `ActiveModel`.
     ```ruby
-      class RecordingForm < Reform::Form
+      class RecordingForm < Reform126::Form
         include Composition
         include ActiveModel
 
@@ -251,7 +251,7 @@ The reason for this confusion is that you don't blog enough about Reform. Only a
 
 ## 0.2.5
 
-* Allow proper form inheritance. When having `HitForm < SongForm < Reform::Form` the `HitForm` class will contain `SongForm`'s properties in addition to its own fields.
+* Allow proper form inheritance. When having `HitForm < SongForm < Reform126::Form` the `HitForm` class will contain `SongForm`'s properties in addition to its own fields.
 * `::model` is now inherited properly.
 * Allow instantiation of nested form with emtpy nested properties.
 
@@ -285,7 +285,7 @@ The reason for this confusion is that you don't blog enough about Reform. Only a
 ## 0.2.0
 
 * Added nested property and collection for `has_one` and `has_many` relationships. . Note that this currently works only 1-level deep.
-* Renamed `Reform::Form::DSL` to `Reform::Form::Composition` and deprecated `DSL`.
+* Renamed `Reform126::Form::DSL` to `Reform126::Form::Composition` and deprecated `DSL`.
 * `require 'reform'` now automatically requires Rails stuff in a Rails environment. Mainly, this is the FormBuilder compatibility layer that is injected into `Form`. If you don't want that, only require 'reform/form'.
 * Composition now totally optional
 * `Form.new` now accepts one argument, only: the model/composition. If you want to create your own representer, inject it by overriding `Form#mapper`. Note that this won't create property accessors for you.

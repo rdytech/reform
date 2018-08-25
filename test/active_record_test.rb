@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'reform/active_record'
+require 'reform_126/active_record'
 
 # ActiveRecord::Schema.define do
 #   create_table :artists do |table|
@@ -20,8 +20,8 @@ require 'reform/active_record'
 # Artist.new(:name => "Racer X").save
 
 class ActiveRecordTest < MiniTest::Spec
-  class SongForm < Reform::Form
-    include Reform::Form::ActiveRecord
+  class SongForm < Reform126::Form
+    include Reform126::Form::ActiveRecord
     model :song
 
     property :title
@@ -72,9 +72,9 @@ class ActiveRecordTest < MiniTest::Spec
   end
 
   it "works with Composition" do
-    form = Class.new(Reform::Form) do
-      include Reform::Form::ActiveRecord
-      include Reform::Form::Composition
+    form = Class.new(Reform126::Form) do
+      include Reform126::Form::ActiveRecord
+      include Reform126::Form::Composition
 
       property :name, :on => :artist
       validates_uniqueness_of :name
@@ -104,7 +104,7 @@ end
 
 
 class PopulateWithActiveRecordTest < MiniTest::Spec
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
 
     property :title
 
@@ -191,9 +191,9 @@ class PopulateWithActiveRecordTest < MiniTest::Spec
     end
 
     describe 'using nested_models_attributes to modify nested collection' do
-      class ActiveModelAlbumForm < Reform::Form
-        include Reform::Form::ActiveModel
-        include Reform::Form::ActiveModel::FormBuilderMethods
+      class ActiveModelAlbumForm < Reform126::Form
+        include Reform126::Form::ActiveModel
+        include Reform126::Form::ActiveModel::FormBuilderMethods
 
         property :title
 

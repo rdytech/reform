@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'reform/version'
+require 'reform_126/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "reform"
-  spec.version       = Reform::VERSION
+  spec.name          = "reform_126"
+  spec.version       = Reform126::VERSION
   spec.authors       = ["Nick Sutterer", "Garrett Heinlen"]
   spec.email         = ["apotonick@gmail.com", "heinleng@gmail.com"]
   spec.description   = %q{Freeing your AR models from form logic.}

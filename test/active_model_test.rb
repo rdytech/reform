@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class NewActiveModelTest < MiniTest::Spec # TODO: move to test/rails/
-  class SongForm < Reform::Form
-    include Reform::Form::ActiveModel
+  class SongForm < Reform126::Form
+    include Reform126::Form::ActiveModel
 
     property :name
   end
@@ -21,8 +21,8 @@ class NewActiveModelTest < MiniTest::Spec # TODO: move to test/rails/
     it { form.class.model_name.to_s.must_equal "NewActiveModelTest::Song" }
 
     let (:class_with_model) {
-      Class.new(Reform::Form) do
-        include Reform::Form::ActiveModel
+      Class.new(Reform126::Form) do
+        include Reform126::Form::ActiveModel
 
         model :album
       end
@@ -42,8 +42,8 @@ class NewActiveModelTest < MiniTest::Spec # TODO: move to test/rails/
 
     describe "class named Song::Form" do
       it do
-        class Form < Reform::Form
-          include Reform::Form::ActiveModel
+        class Form < Reform126::Form
+          include Reform126::Form::ActiveModel
           self
         end.model_name.to_s.must_equal "NewActiveModelTest"
       end
@@ -52,11 +52,11 @@ class NewActiveModelTest < MiniTest::Spec # TODO: move to test/rails/
 
     describe "inline with model" do
       let (:form_class) {
-        Class.new(Reform::Form) do
-          include Reform::Form::ActiveModel
+        Class.new(Reform126::Form) do
+          include Reform126::Form::ActiveModel
 
           property :song do
-            include Reform::Form::ActiveModel
+            include Reform126::Form::ActiveModel
             model :hit
           end
         end
@@ -70,15 +70,15 @@ class NewActiveModelTest < MiniTest::Spec # TODO: move to test/rails/
 
     describe "inline without model" do
       let (:form_class) {
-        Class.new(Reform::Form) do
-          include Reform::Form::ActiveModel
+        Class.new(Reform126::Form) do
+          include Reform126::Form::ActiveModel
 
           property :song do
-            include Reform::Form::ActiveModel
+            include Reform126::Form::ActiveModel
           end
 
           collection :hits do
-            include Reform::Form::ActiveModel
+            include Reform126::Form::ActiveModel
           end
         end
       }
@@ -96,9 +96,9 @@ end
 
 
 class ActiveModelWithCompositionTest < MiniTest::Spec
-   class HitForm < Reform::Form
+  class HitForm < Reform126::Form
     include Composition
-    include Reform::Form::ActiveModel
+    include Reform126::Form::ActiveModel
 
     property  :title,         :on => :song
     properties :name, :genre, :on => :artist # we need to check both ::property and ::properties here!
@@ -115,9 +115,9 @@ class ActiveModelWithCompositionTest < MiniTest::Spec
     it { form.model[:artist].must_equal duran }
 
     it "doesn't delegate when :on missing" do
-      class SongOnlyForm < Reform::Form
+      class SongOnlyForm < Reform126::Form
         include Composition
-        include Reform::Form::ActiveModel
+        include Reform126::Form::ActiveModel
 
         property :title,  :on => :song
 
@@ -149,9 +149,9 @@ class ActiveModelWithCompositionTest < MiniTest::Spec
   end
 
   it "works with any order of ::model and ::property" do
-    class AnotherForm < Reform::Form
+    class AnotherForm < Reform126::Form
       include Composition
-      include Reform::Form::ActiveModel
+      include Reform126::Form::ActiveModel
 
       model :song, :on => :song
       property  :title,  :on => :song

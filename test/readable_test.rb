@@ -3,7 +3,7 @@ require 'test_helper'
 class ReadableTest < MiniTest::Spec
   Credentials = Struct.new(:password)
 
-  class PasswordForm < Reform::Form
+  class PasswordForm < Reform126::Form
     reform_2_0!
 
     property :password, readable: false

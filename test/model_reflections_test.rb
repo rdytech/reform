@@ -1,10 +1,10 @@
 require 'test_helper'
 
-# Reform::ModelReflections will be the interface between the form object and form builders like simple_form.
+# Reform126::ModelReflections will be the interface between the form object and form builders like simple_form.
 class ModelReflectionTest < MiniTest::Spec
-  class SongForm < Reform::Form
-    include Reform::Form::ActiveRecord
-    include Reform::Form::ModelReflections
+  class SongForm < Reform126::Form
+    include Reform126::Form::ActiveRecord
+    include Reform126::Form::ModelReflections
 
     model :song
 
@@ -93,10 +93,10 @@ class ModelReflectionTest < MiniTest::Spec
     end
   end
 
-  class SongWithArtistForm < Reform::Form
-    include Reform::Form::ActiveRecord
-    include Reform::Form::ModelReflections
-    include Reform::Form::Composition
+  class SongWithArtistForm < Reform126::Form
+    include Reform126::Form::ActiveRecord
+    include Reform126::Form::ModelReflections
+    include Reform126::Form::Composition
 
     model :artist
 

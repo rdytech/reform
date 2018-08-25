@@ -2,7 +2,7 @@ require 'test_helper'
 require 'representable/json'
 
 class InheritTest < BaseTest
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     property :title
 
     property :hit do
@@ -46,10 +46,10 @@ class InheritTest < BaseTest
 end
 
 
-require 'reform/form/coercion'
+require 'reform_126/form/coercion'
 class ModuleInclusionTest < MiniTest::Spec
   module BandPropertyForm
-    include Reform::Form::Module
+    include Reform126::Form::Module
 
     property :band do
       property :title
@@ -72,7 +72,7 @@ class ModuleInclusionTest < MiniTest::Spec
 
   # TODO: test if works, move stuff into inherit_schema!
   module AirplaysPropertyForm
-    include Reform::Form::Module
+    include Reform126::Form::Module
 
     collection :airplays do
       property :station
@@ -84,11 +84,11 @@ class ModuleInclusionTest < MiniTest::Spec
 
   # test:
   # by including BandPropertyForm into multiple classes we assure that options hashes don't get messed up by AM:V.
-  class HitForm < Reform::Form
+  class HitForm < Reform126::Form
     include BandPropertyForm
   end
 
-  class SongForm < Reform::Form
+  class SongForm < Reform126::Form
     property :title
 
     include BandPropertyForm
@@ -121,14 +121,14 @@ class ModuleInclusionTest < MiniTest::Spec
 
   # include a module into a module into a class :)
   module AlbumFormModule
-    include Reform::Form::Module
+    include Reform126::Form::Module
     include BandPropertyForm
 
     property :name
     validates :name, :presence => true
   end
 
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     include AlbumFormModule
 
     property :band, :inherit => true do
@@ -155,7 +155,7 @@ class ModuleInclusionTest < MiniTest::Spec
     end
   end
 
-  class LabelForm < Reform::Form
+  class LabelForm < Reform126::Form
     property :location
 
     include GenericRepresenter

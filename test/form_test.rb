@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class FormTest < MiniTest::Spec
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     property :title
 
     property :hit do
@@ -20,7 +20,7 @@ class FormTest < MiniTest::Spec
   end
 
   # combined property/validates syntax.
-  class SongForm < Reform::Form
+  class SongForm < Reform126::Form
     property :composer
     property :title, validates: {presence: true}
     properties :genre, :band, validates: {presence: true}

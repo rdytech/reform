@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class RepresenterOptionsTest < MiniTest::Spec
-  subject { Reform::Representer::Options[] }
+  subject { Reform126::Representer::Options[] }
 
   # don't maintain empty excludes until fixed in representable.
   it { subject.exclude!([]).must_equal({:exclude=>[]}) }
@@ -26,7 +26,7 @@ end
 
 
 class RepresenterTest < MiniTest::Spec
-  class SongRepresenter < Reform::Representer
+  class SongRepresenter < Reform126::Representer
     property :title
     property :name
     property :genre

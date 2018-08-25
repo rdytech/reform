@@ -4,7 +4,7 @@ require 'test_helper'
 class DeprecatedVirtualTest < MiniTest::Spec # TODO: remove me in 2.0.
   Location = Struct.new(:country)
 
-  class LocationForm < Reform::Form
+  class LocationForm < Reform126::Form
     property :country, virtual: true # this becomes readonly: true
   end
 
@@ -31,7 +31,7 @@ end
 class DeprecatedEmptyTest < MiniTest::Spec # don't read, don't write
   Credentials = Struct.new(:password)
 
-  class PasswordForm < Reform::Form
+  class PasswordForm < Reform126::Form
     property :password
     property :password_confirmation, empty: true
   end

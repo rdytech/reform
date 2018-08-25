@@ -19,7 +19,7 @@ class ModelValidationsTest < MiniTest::Spec
 
   end
 
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     extend ActiveModel::ModelValidations
 
     property :title
@@ -27,7 +27,7 @@ class ModelValidationsTest < MiniTest::Spec
     copy_validations_from Album
   end
 
-  class CompositeForm < Reform::Form
+  class CompositeForm < Reform126::Form
     include Composition
     extend ActiveModel::ModelValidations
 

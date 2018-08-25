@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ErrorsTest < MiniTest::Spec
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     property :title
 
     property :hit do

@@ -2,8 +2,8 @@ require 'test_helper'
 
 class FormBuilderCompatTest < BaseTest
   let (:form_class) {
-    Class.new(Reform::Form) do
-      include Reform::Form::ActiveModel::FormBuilderMethods
+    Class.new(Reform126::Form) do
+      include Reform126::Form::ActiveModel::FormBuilderMethods
 
       property :artist do
         property :name
@@ -16,7 +16,7 @@ class FormBuilderCompatTest < BaseTest
         validates :title, :presence => true
       end
 
-      class LabelForm < Reform::Form
+      class LabelForm < Reform126::Form
         property :name
       end
 

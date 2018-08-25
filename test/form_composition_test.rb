@@ -5,7 +5,7 @@ class FormCompositionTest < MiniTest::Spec
   Requester = Struct.new(:id, :name, :requester)
   Band      = Struct.new(:title)
 
-  class RequestForm < Reform::Form
+  class RequestForm < Reform126::Form
     include Composition
 
     property  :name,          :on =>  :requester
@@ -38,7 +38,7 @@ class FormCompositionTest < MiniTest::Spec
   it { form.captcha.must_equal nil }
 
   # #model just returns <Composition>.
-  it { form.model.must_be_kind_of Reform::Composition }
+  it { form.model.must_be_kind_of Reform126::Composition }
 
   # #model[] -> composed models
   it { form.model[:requester].must_equal requester }
@@ -129,8 +129,8 @@ class FormCompositionCollectionTest < MiniTest::Spec
     end
   end
 
-  class LibraryForm < Reform::Form
-    include Reform::Form::Composition
+  class LibraryForm < Reform126::Form
+    include Reform126::Form::Composition
 
     collection :books, on: :library do
       property :id

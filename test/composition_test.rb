@@ -1,5 +1,5 @@
 class CompositionTest < ReformSpec
-  class SongAndArtist < Reform::Composition
+  class SongAndArtist < Reform126::Composition
     map({:artist => [[:name]], :song => [[:title]]}) #SongAndArtistMap.representable_attrs
   end
 
@@ -19,8 +19,8 @@ class CompositionTest < ReformSpec
   describe "::from" do
     it "creates the same mapping" do
       comp =
-      Reform::Composition.from(
-          Class.new(Reform::Representer) do
+      Reform126::Composition.from(
+          Class.new(Reform126::Representer) do
             property :name,  :on => :artist
             property :title, :on => :song
           end
@@ -43,7 +43,7 @@ class CompositionTest < ReformSpec
     end
 
     it "works with strings in map" do
-      Class.new(Reform::Composition) do
+      Class.new(Reform126::Composition) do
         map(:artist => [["name"]])
       end.new({}).nested_hash_for(:name => "Jimi Hendrix").must_equal({:artist=>{:name=>"Jimi Hendrix"}})
     end

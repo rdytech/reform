@@ -1,7 +1,7 @@
 require "test_helper"
 
 class ReadonlyTest < MiniTest::Spec
-  class SongForm < Reform::Form
+  class SongForm < Reform126::Form
     property :artist
     property :title, writeable: false
     # TODO: what to do with virtual values?

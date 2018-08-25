@@ -19,7 +19,7 @@ unless ActiveModel::VERSION::MAJOR == 3 and ActiveModel::VERSION::MINOR == 0
       validates_with UnexistantTitleValidator
     end
 
-    class AlbumForm < Reform::Form
+    class AlbumForm < Reform126::Form
       extend ActiveModel::ModelValidations
 
       property :title

@@ -9,7 +9,7 @@ class ReformTest < ReformSpec
   describe "::property" do
     it "doesn't allow reserved names" do
       assert_raises RuntimeError do
-        Class.new(Reform::Form) do
+        Class.new(Reform126::Form) do
           property :model
         end
       end
@@ -22,7 +22,7 @@ class ReformTest < ReformSpec
 
     subject do
       opts = options
-      Class.new(Reform::Form) do
+      Class.new(Reform126::Form) do
         properties :name, :title, opts
         properties :created_at
       end.new(comp)
@@ -35,7 +35,7 @@ class ReformTest < ReformSpec
     it { subject; options.must_equal({:type => String}) }
   end
 
-  class SongForm < Reform::Form
+  class SongForm < Reform126::Form
     property :name
     property :title
 
@@ -95,7 +95,7 @@ class ReformTest < ReformSpec
 
     # TODO: test errors. test valid.
     describe "invalid input" do
-      class ValidatingForm < Reform::Form
+      class ValidatingForm < Reform126::Form
         property :name
         property :title
 
@@ -118,7 +118,7 @@ class ReformTest < ReformSpec
   describe "#errors" do
     before { form.validate({})}
 
-    it { form.errors.must_be_kind_of Reform::Form::Errors }
+    it { form.errors.must_be_kind_of Reform126::Form::Errors }
 
     it { form.errors.messages.must_equal({}) }
 
@@ -179,7 +179,7 @@ end
 
 
 class OverridingAccessorsTest < BaseTest
-  class SongForm < Reform::Form
+  class SongForm < Reform126::Form
     property :title
 
     def title=(v) # used in #validate.
@@ -222,7 +222,7 @@ end
 
 
 class MethodInFormTest < MiniTest::Spec
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     property :title
 
     def title

@@ -4,7 +4,7 @@ class PrepopulateTest < MiniTest::Spec
   Song = Struct.new(:title, :band, :length)
   Band = Struct.new(:name)
 
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     property :title, prepopulate: ->(options){ "Another Day At Work" }
     property :length
 
@@ -37,7 +37,7 @@ class PrepopulateInFormContextTest < MiniTest::Spec
   Song = Struct.new(:title, :band, :length)
   Band = Struct.new(:name)
 
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     property :title, prepopulate: ->(options){ "#{my_title} #{options.class}" }
 
     property :hit, prepopulate: ->(options){ my_hit } do
@@ -71,7 +71,7 @@ end
 class PrepopulateWithExistingCollectionTest < MiniTest::Spec
   Song = Struct.new(:title)
 
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     collection :songs, prepopulate: ->(*){ songs.map(&:model) + [Song.new] } do
       property :title
     end

@@ -19,16 +19,16 @@ class ValidateTest < BaseTest
 
     it { subject.title.must_equal "Best Of" }
 
-    it { subject.hit.must_be_kind_of Reform::Form }
+    it { subject.hit.must_be_kind_of Reform126::Form }
     it { subject.hit.title.must_equal "Roxanne" }
 
     it { subject.songs.must_be_kind_of Array }
     it { subject.songs.size.must_equal 2 }
 
-    it { subject.songs[0].must_be_kind_of Reform::Form }
+    it { subject.songs[0].must_be_kind_of Reform126::Form }
     it { subject.songs[0].title.must_equal "Fallout" }
 
-    it { subject.songs[1].must_be_kind_of Reform::Form }
+    it { subject.songs[1].must_be_kind_of Reform126::Form }
     it { subject.songs[1].title.must_equal "Roxanne" }
 
     # don't touch model.
@@ -39,7 +39,7 @@ class ValidateTest < BaseTest
 
   describe "not populated properly raises error" do
     it do
-      assert_raises Reform::Form::Validate::DeserializeError do
+      assert_raises Reform126::Form::Validate::DeserializeError do
         AlbumForm.new(Album.new).validate("hit"   => {"title" => "Roxanne"})
       end
     end
@@ -48,7 +48,7 @@ class ValidateTest < BaseTest
   # TODO: the following tests go to populate_test.rb
   describe "manual setup with populator" do
     let (:form) {
-      Class.new(Reform::Form) do
+      Class.new(Reform126::Form) do
         property :hit, :populator => lambda { |fragment, args|
           puts "******************* #{fragment}"
 
@@ -76,7 +76,7 @@ class ValidateTest < BaseTest
 
   describe ":populator, half-populated collection" do
     let (:form) {
-      Class.new(Reform::Form) do
+      Class.new(Reform126::Form) do
         collection :songs, :populator => lambda { |fragment, index, args|
           songs[index] or songs[index] = args.binding[:form].new(Song.new)
         } do
@@ -105,7 +105,7 @@ class ValidateTest < BaseTest
   # not sure if we should catch that in Reform or rather do that in disposable. this is https://github.com/apotonick/reform/pull/104
   # describe ":populator with :empty" do
   #   let (:form) {
-  #     Class.new(Reform::Form) do
+  #     Class.new(Reform126::Form) do
   #       collection :songs, :empty => true, :populator => lambda { |fragment, index, args|
   #         songs[index] = args.binding[:form].new(Song.new)
   #       } do
@@ -131,7 +131,7 @@ class ValidateTest < BaseTest
 
   describe ":populate_if_empty, half-populated collection" do
     let (:form) {
-      Class.new(Reform::Form) do
+      Class.new(Reform126::Form) do
         collection :songs, :populate_if_empty => Song do
           property :title
         end
@@ -157,7 +157,7 @@ class ValidateTest < BaseTest
 
   describe ":populate_if_empty" do
     let (:form) {
-      Class.new(Reform::Form) do
+      Class.new(Reform126::Form) do
         property :hit, :populate_if_empty => lambda { |fragment, args| Song.new } do
           property :title
         end
@@ -213,7 +213,7 @@ class ValidateTest < BaseTest
 
   describe "populate_if_empty: Class" do
     let (:form) {
-      Class.new(Reform::Form) do
+      Class.new(Reform126::Form) do
         property :hit, :populate_if_empty => Song do
           property :title
         end
@@ -240,8 +240,8 @@ class ValidateTest < BaseTest
   describe "with empty collection and cardinality" do
     let (:album) { Album.new }
 
-    subject { Class.new(Reform::Form) do
-      include Reform::Form::ActiveModel
+    subject { Class.new(Reform126::Form) do
+      include Reform126::Form::ActiveModel
       model :album
 
       collection :songs do
@@ -296,7 +296,7 @@ class ValidateTest < BaseTest
   # providing manual validator method allows accessing form's API.
   describe "with ::validate" do
     let (:form) {
-      Class.new(Reform::Form) do
+      Class.new(Reform126::Form) do
         property :title
 
         validate :title?
@@ -322,7 +322,7 @@ class ValidateTest < BaseTest
   # overriding the reader for a nested form should only be considered when rendering.
   describe "with overridden reader for nested form" do
     let (:form) {
-      Class.new(Reform::Form) do
+      Class.new(Reform126::Form) do
         property :band, :populate_if_empty => lambda { |*| Band.new } do
           property :label
         end

@@ -1,11 +1,11 @@
 require 'test_helper'
-require 'reform/form/json'
+require 'reform_126/form/json'
 
 class DeserializeTest < BaseTest
-  class AlbumContract < Reform::Form
-    include Reform::Form::ActiveModel::FormBuilderMethods # overrides #update!, too.
+  class AlbumContract < Reform126::Form
+    include Reform126::Form::ActiveModel::FormBuilderMethods # overrides #update!, too.
 
-    include Reform::Form::JSON
+    include Reform126::Form::JSON
 
     property :title
     validates :title, :presence => true, :length => {:minimum => 3}

@@ -38,7 +38,7 @@ Reform comes with two base classes.
 You're working at a famous record label and your job is archiving all the songs, albums and artists. You start with a form to populate your `songs` table.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   property :title
   property :length
 
@@ -52,7 +52,7 @@ Define your form's fields using `::property`. Validations no longer go into the 
 Luckily, this can be shortened as follows.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   property :title, validates: {presence: true}
   property :length, validates: {numericality: true}
 end
@@ -61,7 +61,7 @@ end
 Use `properties` to bulk-specify fields.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   properties :title, :length, validates: {presence: true} # both required!
   validates :length, numericality: true
 end
@@ -105,7 +105,7 @@ class SongsController
 Reform will read property values from the model in setup. Given the following form class.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   property :title
 ```
 
@@ -114,7 +114,7 @@ Internally, this form will call `song.title` to populate the title field.
 If you, for whatever reasons, want to use a different public name, use `:from`.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   property :name, from: :title
 ```
 
@@ -227,7 +227,7 @@ Contracts can be used to completely remove validation logic from your model clas
 A contract looks like a form.
 
 ```ruby
-class AlbumContract < Reform::Contract
+class AlbumContract < Reform126::Contract
   property :title
   validates :title, length: {minimum: 9}
 
@@ -273,7 +273,7 @@ end
 The edit form should allow changing data for artist and song.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   property :title
   property :length
 
@@ -359,7 +359,7 @@ end
 The form might look like this.
 
 ```ruby
-class AlbumForm < Reform::Form
+class AlbumForm < Reform126::Form
   property :title
 
   collection :songs do
@@ -412,7 +412,7 @@ end
 You can assign Reform to _not_ call `save` on a particular nested model (per default, it is called automatically on all nested models).
 
 ```ruby
-class AlbumForm < Reform::Form
+class AlbumForm < Reform126::Form
   # ...
 
   collection :songs, save: false do
@@ -446,7 +446,7 @@ So, the following code will fail.
 However, you can advise Reform to setup the correct objects for you.
 
 ```ruby
-class AlbumForm < Reform::Form
+class AlbumForm < Reform126::Form
   # ...
 
   collection :songs, populate_if_empty: Song do
@@ -459,7 +459,7 @@ This works for both `property` and `collection` and instantiates `Song` objects 
 If you want to create the objects yourself, because you're smarter than Reform, do it with a lambda.
 
 ```ruby
-class AlbumForm < Reform::Form
+class AlbumForm < Reform126::Form
   # ...
 
   collection :songs, populate_if_empty: lambda { |fragment, args| Song.new } do
@@ -475,7 +475,7 @@ Sometimes you might want to embrace two (or more) unrelated objects with a singl
 Say we were to edit a song and the label data the record was released from. Internally, this would imply working on the `songs` table and the `labels` table.
 
 ```ruby
-class SongWithLabelForm < Reform::Form
+class SongWithLabelForm < Reform126::Form
   include Composition
 
   property :title, on: :song
@@ -535,7 +535,7 @@ To maximize reusability, you can also define forms in modules and include them i
 
 ```ruby
 module SongsForm
-  include Reform::Form::Module
+  include Reform126::Form::Module
 
   collection :songs do
     property :title
@@ -547,7 +547,7 @@ end
 This can now be included into a real form.
 
 ```ruby
-class AlbumForm < Reform::Form
+class AlbumForm < Reform126::Form
   property :title
 
   include SongsForm
@@ -562,7 +562,7 @@ Note that you can also override properties [using inheritance](#inheritance) in 
 Forms can be derived from other forms and will inherit all properties and validations.
 
 ```ruby
-class AlbumForm < Reform::Form
+class AlbumForm < Reform126::Form
   property :title
 
   collection :songs do
@@ -609,7 +609,7 @@ Be sure to add `virtus` to your Gemfile.
 ```ruby
 require 'reform/form/coercion'
 
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   include Coercion
 
   property :written_at, type: DateTime
@@ -629,7 +629,7 @@ form.written_at #=> <DateTime "2014 September 26 00:00">
 If you need to filter values manually, you can override the setter in the form.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   property :title
 
   def title=(value)
@@ -651,7 +651,7 @@ Virtual fields come in handy when there's no direct mapping to a model attribute
 Often, fields like `password_confirmation` should neither be read from nor written back to the model. Reform comes with the `:virtual` option to handle that case.
 
 ```ruby
-class PasswordForm < Reform::Form
+class PasswordForm < Reform126::Form
   property :password
   property :password_confirmation, virtual: true
 ```
@@ -676,7 +676,7 @@ form.save do |nested|
 When you want to show a value but skip processing it after submission the `:writeable` option is your friend.
 
 ```ruby
-class ProfileForm < Reform::Form
+class ProfileForm < Reform126::Form
   property :country, writeable: false
 ```
 
@@ -704,7 +704,7 @@ property :credit_card_number, readable: false
 Sometimes when you still keep validations in your models (which you shouldn't) copying them to a form might not feel right. In that case, you can let Reform automatically copy them.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   property :title
 
   extend ActiveModel::ModelValidations
@@ -717,7 +717,7 @@ Note how `copy_validations_from` copies over the validations allowing you to sta
 This also works with Composition.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   include Composition
   # ...
 
@@ -763,8 +763,8 @@ As mentioned in the [Rails Integration](https://github.com/apotonick/reform#rail
 You may want to include the module manually then.
 
 ```ruby
-class SongForm < Reform::Form
-  include Reform::Form::ActiveRecord
+class SongForm < Reform126::Form
+  include Reform126::Form::ActiveRecord
 ```
 
 
@@ -775,16 +775,16 @@ Forms in Reform can easily be made ActiveModel-compliant.
 Note that this step is _not_ necessary in a Rails environment.
 
 ```ruby
-class SongForm < Reform::Form
-  include Reform::Form::ActiveModel
+class SongForm < Reform126::Form
+  include Reform126::Form::ActiveModel
 end
 ```
 
 If you're not happy with the `model_name` result, configure it manually.
 
 ```ruby
-class CoverSongForm < Reform::Form
-  include Reform::Form::ActiveModel
+class CoverSongForm < Reform126::Form
+  include Reform126::Form::ActiveModel
 
   model :song
 end
@@ -800,9 +800,9 @@ To make your forms work with all the form gems like `simple_form` or Rails `form
 Again, this step is implicit in Rails and you don't need to do it manually.
 
 ```ruby
-class SongForm < Reform::Form
-  include Reform::Form::ActiveModel
-  include Reform::Form::ActiveModel::FormBuilderMethods
+class SongForm < Reform126::Form
+  include Reform126::Form::ActiveModel
+  include Reform126::Form::ActiveModel::FormBuilderMethods
 end
 ```
 
@@ -811,7 +811,7 @@ end
 If you want full support for `simple_form` do as follows.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   include ModelReflections
 ```
 
@@ -822,7 +822,7 @@ Including this module will add `#column_for_attribute` and other methods need by
 In case you're processing uploaded files with your form using CarrierWave, Paperclip, Dragonfly or Paperdragon we recommend using the awesome [file_validators](https://github.com/musaffa/file_validators) gem for file type and size validations.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   property :image
 
   validates :image, file_size: {less_than: 2.megabytes},
@@ -859,7 +859,7 @@ The nested `SongForm` is a stand-alone form class you have to provide.
 When "real" coercion is too much and you simply want to convert incoming data yourself, override the setter.
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   property :title
 
   def title=(v)
@@ -875,7 +875,7 @@ This will capitalize the title _after_ calling `form.validate` but _before_ vali
 In case you want to change a value for presentation or provide a default value, override the reader. This is only considered when the form is rendered (e.g. in `form_for`).
 
 ```ruby
-class SongForm < Reform::Form
+class SongForm < Reform126::Form
   property :genre
 
   def genre
@@ -967,7 +967,7 @@ Collections and partial collection population is covered in chapter 5.
 You can run your very own populator logic if you're keen (and you know what you're doing).
 
 ```ruby
-class AlbumForm < Reform::Form
+class AlbumForm < Reform126::Form
   # ...
 
   collection :songs, populator: lambda { |fragment, args| args.binding[:form].new(Song.find fragment[:id]) } do

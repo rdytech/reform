@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class AsTest < BaseTest
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     property :name, from: :title
 
     property :single, from: :hit do
@@ -76,7 +76,7 @@ end
 
 
 class AsREMOVEMEin20Test < BaseTest # TODO: remove me in 2.0.
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     property :name, as: :title
 
     property :single, as: :hit do

@@ -1,4 +1,4 @@
-require 'reform'
+require 'reform_126'
 require 'minitest/autorun'
 
 class ReformSpec < MiniTest::Spec
@@ -27,7 +27,7 @@ ActiveRecord::Base.establish_connection(
 #Artist.delete_all
 
 class BaseTest < MiniTest::Spec
-  class AlbumForm < Reform::Form
+  class AlbumForm < Reform126::Form
     property :title
 
     property :hit do

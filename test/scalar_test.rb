@@ -2,7 +2,7 @@ require 'test_helper'
 
 
 class SelfNestedTest < BaseTest
-  class Form < Reform::Form
+  class Form < Reform126::Form
     property :title  do
 
      end
@@ -17,7 +17,7 @@ class SelfNestedTest < BaseTest
   it do
     form = Form.new(song)
 
-    form.title = Class.new(Reform::Form) do
+    form.title = Class.new(Reform126::Form) do
       @form_name = "ficken"
       def self.name # needed by ActiveModel::Validation and I18N.
           @form_name
@@ -44,7 +44,7 @@ class SelfNestedTest < BaseTest
   end
 
 
-  class ImageForm < Reform::Form
+  class ImageForm < Reform126::Form
     # property :image, populate_if_empty: lambda { |object, args| object }  do
     property :image, :scalar => true do
       validates :size,  numericality: { less_than: 10 }
@@ -112,7 +112,7 @@ class SelfNestedTest < BaseTest
 
 
   # validate string only if it's in params.
-  class StringForm < Reform::Form
+  class StringForm < Reform126::Form
     property :image, :scalar => true do # creates "empty" form
       validates :length => {:minimum => 10}
     end

@@ -1,4 +1,4 @@
-class AlbumForm < Reform::Form # FIXME: sub forms don't inherit FBM.
+class AlbumForm < Reform126::Form # FIXME: sub forms don't inherit FBM.
 
   model :album
 
