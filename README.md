@@ -1,29 +1,29 @@
+# This is a hacked version of Reform!!
+
+Goal of the hacked version is to allow you to be able to run reform1 and reform2 side by side.
+This gives you the ability to be able to upgrade a single form at a time.
+
 # Reform
 
-Decouple your models from forms. Reform gives you a form object with validations and nested setup of models. It is completely framework-agnostic and doesn't care about your database.
+Visit https://github.com/trailblazer/reform for the official maintainer of Reform
 
-Although reform can be used in any Ruby framework, it comes with [Rails support](#rails-integration), works with [simple_form and other form gems](#formbuilder-support), allows nesting forms to implement [has_one](#nesting-forms-1-1-relations) and [has_many](#nesting-forms-1-n-relations) relationships, can [compose a form](#compositions) from multiple objects and gives you [coercion](#coercion).
+## Setup
 
-<a href="https://leanpub.com/trailblazer">
-![](https://raw.githubusercontent.com/apotonick/trailblazer/master/doc/trb.jpg)
-</a>
-
-Reform is part of the [Trailblazer project](https://github.com/apotonick/trailblazer). Please [buy my book](https://leanpub.com/trailblazer) to support the development and learn everything about Reform. Currently the book discusses:
-
-* Form objects, the DSL and basic API (chapter 2 and 3)
-* Basic validations and rendering forms (chapter 3)
-* Nested forms, prepopulating and validation populating and pre-selecting values (chapter 5)
-
-More chapters are coming!
-
-
-## Installation
-
-Add this line to your Gemfile:
+* replace reform with this branched version in you Gemfile:
 
 ```ruby
-gem 'reform'
+gem 'reform_126', github: 'grantspeelman/reform', branch: 'reform126'
+
+# You do not want reform2 enabled initially until you fully confident you have renamed everything
+# gem 'reform' 
+# gem 'reform-rails' # do not add reform initially
 ```
+
+* Rename all instances of `Reform::` to `Reform126::`
+* Rename all requires from `require "reform/` to `require "reform_126/`
+* Make sure your test suite is still passing (and maybe get this version deployed)
+* Now you can add the new `reform` and `reform-rails` gem
+* You can now start using Reform 2 for new forms and upgrade older forms at your own pace
 
 ## Nomenclature
 
