@@ -85,11 +85,7 @@ class ModelReflectionTest < MiniTest::Spec
     # delegate to model class.
     it do
       reflection = form.class.reflect_on_association(:artist)
-      if ActiveRecord.version.to_s >= '5'
-        reflection.must_be_instance_of ActiveRecord::Reflection::BelongsToReflection
-      else
-        reflection.must_be_instance_of ActiveRecord::Reflection::AssociationReflection
-      end
+      reflection.must_be_instance_of ActiveRecord::Reflection::BelongsToReflection
     end
   end
 
