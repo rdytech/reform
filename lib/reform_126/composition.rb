@@ -1,9 +1,9 @@
-require 'disposable/composition'
+require 'disposable009/composition'
 
 # TODO: replace that with lazy Twin and Composition from Disposable.
 module Reform126
   class Expose
-    include Disposable::Composition
+    include Disposable009::Composition
 
     # DISCUSS: this might be moved to Disposable::Twin::Expose.
     class << self

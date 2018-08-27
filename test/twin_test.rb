@@ -5,7 +5,7 @@ require 'reform_126/twin'
 
 class TwinTest < MiniTest::Spec
   class SongForm < Reform126::Form
-    class Twin < Disposable::Twin
+    class Twin < Disposable009::Twin
       property :title
       option :is_online # TODO: this should make it read-only in reform!
     end

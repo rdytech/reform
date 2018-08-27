@@ -1,5 +1,15 @@
 require 'reform_126'
+require 'disposable009'
 require 'minitest/autorun'
+
+class Track
+  def initialize(options={})
+    @title = options[:title]
+  end
+
+  attr_reader :title
+end
+
 
 class ReformSpec < MiniTest::Spec
   let (:duran)  { Struct.new(:name).new("Duran Duran") }
