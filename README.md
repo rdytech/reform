@@ -13,7 +13,7 @@ Visit https://github.com/trailblazer/reform for the official maintainer of Refor
 * replace reform with this branched version in you Gemfile:
 
 ```ruby
-gem 'reform_126', github: 'grantspeelman/reform', branch: 'reform126'
+gem 'reform_126', github: 'jobready/reform', branch: 'reform126'
 
 # You do not want reform2 enabled initially until you fully confident you have renamed everything
 # gem 'reform' 
