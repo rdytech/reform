@@ -1,6 +1,6 @@
 require 'uber/inheritable_attr'
-require 'representable/decorator'
-require 'representable/hash'
+require 'representable218/decorator'
+require 'representable218/hash'
 require 'disposable009/twin/representer'
 require 'disposable009/twin/option'
 require 'disposable009/twin/builder'

@@ -1,9 +1,9 @@
-require 'representable/hash'
-require 'representable/decorator'
+require 'representable218/hash'
+require 'representable218/decorator'
 
 module Reform126
-  class Representer < Representable::Decorator
-    include Representable::Hash::AllowSymbols
+  class Representer < Representable218::Decorator
+    include Representable218::Hash::AllowSymbols
 
     extend Uber::InheritableAttr
     inheritable_attr :options # FIXME: this doesn't need to be inheritable.
@@ -31,7 +31,7 @@ module Reform126
     end
 
 
-    include Representable::Hash
+    include Representable218::Hash
 
     # Returns hash of all property names.
     def self.fields(&block)

@@ -12,7 +12,7 @@ class RepresenterOptionsTest < MiniTest::Spec
 
 
   module Representer
-    include Representable::Hash
+    include Representable218::Hash
     property :title
     property :genre
     property :id

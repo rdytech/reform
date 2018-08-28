@@ -169,7 +169,7 @@ module Reform126
     end
 
     # allows including representers from Representable, Roar or disposable.
-    def self.inherit_module!(representer) # called from Representable::included.
+    def self.inherit_module!(representer) # called from Representable218::included.
       # representer_class.inherit_module!(representer)
       representer.representable_attrs.each do |dfn|
         next if dfn.name == "links" # wait a second # FIXME what is that?

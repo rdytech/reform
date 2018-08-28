@@ -1,7 +1,7 @@
 module Disposable009
   class Twin
-    class Decorator < Representable::Decorator
-      include Representable::Hash
+    class Decorator < Representable218::Decorator
+      include Representable218::Hash
       include AllowSymbols
 
       # DISCUSS: same in reform, is that a bug in represntable?
@@ -20,7 +20,7 @@ module Disposable009
       end
     end
 
-    class Definition < Representable::Definition
+    class Definition < Representable218::Definition
       def dynamic_options
         super + [:twin]
       end

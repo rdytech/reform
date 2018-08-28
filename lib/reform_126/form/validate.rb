@@ -58,7 +58,7 @@ module Reform126::Form::Validate
 
   class Changed
     def call(fragment, params, options)
-      # options is a Representable::Options object holding all the stakeholders. this is here becaues of pass_options: true.
+      # options is a Representable218::Options object holding all the stakeholders. this is here becaues of pass_options: true.
       form = options.represented
       name = options.binding.name
 
@@ -76,7 +76,7 @@ module Reform126::Form::Validate
 
     super() # run the actual validation on self.
 
-  rescue Representable::DeserializeError
+  rescue Representable218::DeserializeError
     raise DeserializeError.new("[Reform] Deserialize error: You probably called #validate without setting up your nested models. Check https://github.com/apotonick/reform#populating-forms-for-validation on how to use populators.")
   end
 
@@ -124,7 +124,7 @@ private
       end
 
 
-      dfn.merge!(:parse_filter => Representable::Coercion::Coercer.new(dfn[:coercion_type])) if dfn[:coercion_type]
+      dfn.merge!(:parse_filter => Representable218::Coercion::Coercer.new(dfn[:coercion_type])) if dfn[:coercion_type]
 
       dfn.merge!(:skip_if => Skip::AllBlank.new) if dfn[:skip_if] == :all_blank
       dfn.merge!(:skip_parse => dfn[:skip_if]) if dfn[:skip_if]

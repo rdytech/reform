@@ -1,4 +1,4 @@
-require 'representable/coercion'
+require 'representable218/coercion'
 
 module Reform126::Form::Coercion
   def self.included(base)
@@ -9,7 +9,7 @@ module Reform126::Form::Coercion
   module ClassMethods
     def representer_class # TODO: check out how we can utilise Config#features.
       super.class_eval do
-        include Representable::Coercion
+        include Representable218::Coercion
         self
       end
     end

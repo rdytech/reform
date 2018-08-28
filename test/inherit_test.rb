@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'representable/json'
+require 'representable218/json'
 
 class InheritTest < BaseTest
   class AlbumForm < Reform126::Form
@@ -147,8 +147,7 @@ class ModuleInclusionTest < MiniTest::Spec
 
   # including representer into form
   module GenericRepresenter
-    include Representable
-
+    include Representable218
     property :title
     property :manager do
       property :title
