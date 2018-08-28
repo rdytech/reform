@@ -1,6 +1,7 @@
 language: ruby
 rvm:
-  - 2.3
+  - 2.1 # quest still on 2.1
+  - 2.3 # direct and neptune on 2.3
 gemfile:
   - gemfiles/gems-rails4-2.rb
   - gemfiles/gems-rails5-0.rb
