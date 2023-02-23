@@ -30,7 +30,15 @@ module Reform126::Form::ActiveRecord
 
       @klass = record.class # this is usually done in the super-sucky #setup method.
       super(record).tap do |res|
-        form.errors.add(property, record.errors.first.last) if record.errors.present?
+        if record.errors.any?
+          if Rails.version > "6.0"
+            record.errors.each do |error|
+              form.errors.add(property, error.type)
+            end
+          else
+            form.errors.add(property, record.errors.first.last)
+          end
+        end
       end
     end
   end
