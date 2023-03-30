@@ -12,17 +12,7 @@ class Reform126::Contract::Errors < ActiveModel::Errors
   # end
 
   def merge!(errors, prefix)
-    if Rails.version > "6.0"
-      rails6_1_merge(errors)
-    else
-      rails6_0_merge(errors, prefix)
-    end
-  end
-
-  def rails6_1_merge(errors)
-    errors.errors.each do |error|
-      add(error.attribute, error.type, message: error.message)
-    end
+    rails6_0_merge(errors, prefix)
   end
 
   def rails6_0_merge(errors, prefix)
