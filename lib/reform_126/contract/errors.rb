@@ -12,7 +12,22 @@ class Reform126::Contract::Errors < ActiveModel::Errors
   # end
 
   def merge!(errors, prefix)
-    rails6_0_merge(errors, prefix)
+    if Rails.version > "7.0"
+      rails7_0_merge(errors, prefix)
+    else
+      rails6_0_merge(errors, prefix)
+    end
+  end
+
+  def rails7_0_merge(errors, prefix)
+    errors.errors.each do |error|
+      field = error.attribute
+      unless field.to_sym == :base
+        field = (prefix+[field]).join(".").to_sym # TODO: why is that a symbol in Rails?
+      end
+
+      add(field, error.message)
+    end
   end
 
   def rails6_0_merge(errors, prefix)
