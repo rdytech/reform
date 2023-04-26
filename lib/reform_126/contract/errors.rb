@@ -26,6 +26,7 @@ class Reform126::Contract::Errors < ActiveModel::Errors
         field = (prefix+[field]).join(".").to_sym # TODO: why is that a symbol in Rails?
       end
 
+      next if messages[field] and messages[field].include?(error.message)
       add(field, error.message)
     end
   end
