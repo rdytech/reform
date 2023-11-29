@@ -33,7 +33,7 @@ module Reform126::Form::ActiveRecord
         if record.errors.any?
           if Rails.version > "6.0"
             record.errors.each do |error|
-              form.errors.add(property, error.type)
+              form.errors.add(property, error.type, error.options)
             end
           else
             form.errors.add(property, record.errors.first.last)
